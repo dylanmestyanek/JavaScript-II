@@ -58,28 +58,39 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+runners.forEach(runner => fullNames.push(`${runner.first_name}, ${runner.last_name}`));
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
+let firstNamesAllCaps = runners.map(runner => runner.first_name.replace(runner.first_name[0], runner.first_name[0].toUpperCase()));
 console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
-let runnersLargeSizeShirt = [];
+let runnersLargeSizeShirt = runners.filter(runner => runner.shirt_size == "L");
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
 let ticketPriceTotal = 0;
+runners.reduce((total, runner) => ticketPriceTotal += runner.donation, 0);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// Return runners with an even ID value
+let evenIdRunners = runners.filter(runner => runner.id % 2 == 0);
+console.log(evenIdRunners);
 
 // Problem 2
+// Sort runners alphabetically by last name
+let sortedRunners = runners.sort((a, b) => a.last_name > b.last_name ? 1 : -1);
+console.log(sortedRunners);
 
 // Problem 3
+// Return only the runners in the Skinix company
+let skinixRunners = runners.filter(runner => runner.company_name == "Skinix");
+console.log(skinixRunners);
